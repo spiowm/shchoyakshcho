@@ -1,0 +1,61 @@
+<div class="form">
+  <div class="form__columns">
+    <div class="form__column">
+      <div class="form__field">
+        <label for="minPayment" class="form__label">
+          Чи сплачували ви лише мінімальну суму за кредитною карткою у попередні місяці?
+        </label>
+        <select id="minPayment" class="form__input">
+          <option value="yes">Так</option>
+          <option value="no">Ні</option>
+        </select>
+      </div>
+
+      <div class="form__field">
+        <label for="numLoans" class="form__label">
+          Скільки кредитів ви вже взяли в цьому банку?
+        </label>
+        <input id="numLoans" type="number" class="form__input" />
+      </div>
+
+      <div class="form__field">
+        <label for="creditLimitChange" class="form__label">
+          На скільки відсотків ваш кредитний ліміт змінювався за останній рік?
+        </label>
+        <input id="creditLimitChange" type="number" class="form__input" />
+      </div>
+
+      <div class="form__field">
+        <label for="paymentDelay" class="form__label">
+          Скільки в середньому днів ви затримували оплату після крайнього терміну?
+        </label>
+        <input id="paymentDelay" type="number" class="form__input" />
+      </div>
+    </div>
+
+    <div class="form__column">
+      <div class="form__field">
+        <label for="creditInquiries" class="form__label">
+          Скільки разів ви запитували про видачу кредиту або нової кредитної картки?
+        </label>
+        <input id="creditInquiries" type="number" class="form__input" />
+      </div>
+
+      <div class="form__field">
+        <label for="interestRate" class="form__label">
+          Яка процентна ставка за вашою кредитною карткою (у відсотках)?
+        </label>
+        <input id="interestRate" type="number" step="0.01" class="form__input" />
+      </div>
+
+      <div class="form__field">
+        <label for="delayedPayments" class="form__label">
+          Скільки разів ви протермінували платежі за кредитом?
+        </label>
+        <input id="delayedPayments" type="number" class="form__input" />
+      </div>
+    </div>
+  </div>
+
+  <button class="form__button">Генерувати</button>
+</div>

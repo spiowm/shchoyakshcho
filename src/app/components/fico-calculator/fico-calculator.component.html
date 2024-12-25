@@ -19,25 +19,32 @@
         [id]="field.id"
         [(ngModel)]="formData[field.id]"
         [name]="field.id"
+        [min]="field.min"
         required
       />
     </div>
 
     <div class="fico-calculator__checkboxes">
-      <h2 class="fico-calculator__checkboxes-title">Інформація про житло</h2>
+      <h2 class="fico-calculator__checkboxes-title">Поточний статус володіння житлом</h2>
       <div
         class="fico-calculator__checkboxes-item"
         *ngFor="let option of ownershipOptions"
       >
         <input
-          type="checkbox"
+          type="radio"
           [id]="option.id"
-          [(ngModel)]="formData[option.id]"
-          [name]="option.id"
+          [(ngModel)]="formData['home_ownership']"
+          [value]="option.id"
+          name="home_ownership"
         />
         <label [for]="option.id">{{ option.label }}</label>
       </div>
     </div>
+
+    <div class="fico-calculator__error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
 
     <button
       type="submit"
@@ -47,6 +54,7 @@
       Генерувати
     </button>
   </form>
+
 
   <div *ngIf="ficoScore !== null" class="fico-calculator__score">
     Ваш FICO Score: {{ ficoScore }}

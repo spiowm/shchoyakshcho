@@ -1,0 +1,54 @@
+<div class="fico-calculator">
+  <h1 class="fico-calculator__title">Калькулятор FICO</h1>
+
+  <form
+    class="fico-calculator__form"
+    (ngSubmit)="onSubmit()"
+    #ficoForm="ngForm"
+  >
+    <div class="fico-calculator__field" *ngFor="let field of fields">
+      <label class="fico-calculator__field-label" [for]="field.id">
+        {{ field.label }}
+      </label>
+      <div class="fico-calculator__field-description">
+        {{ field.description }}
+      </div>
+      <input
+        type="number"
+        class="fico-calculator__field-input"
+        [id]="field.id"
+        [(ngModel)]="formData[field.id]"
+        [name]="field.id"
+        required
+      />
+    </div>
+
+    <div class="fico-calculator__checkboxes">
+      <h2 class="fico-calculator__checkboxes-title">Інформація про житло</h2>
+      <div
+        class="fico-calculator__checkboxes-item"
+        *ngFor="let option of ownershipOptions"
+      >
+        <input
+          type="checkbox"
+          [id]="option.id"
+          [(ngModel)]="formData[option.id]"
+          [name]="option.id"
+        />
+        <label [for]="option.id">{{ option.label }}</label>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="fico-calculator__button"
+      [disabled]="!ficoForm.form.valid"
+    >
+      Генерувати
+    </button>
+  </form>
+
+  <div *ngIf="ficoScore !== null" class="fico-calculator__score">
+    Ваш FICO Score: {{ ficoScore }}
+  </div>
+</div>

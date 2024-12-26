@@ -26,95 +26,102 @@ export class FicoCalculatorComponent {
   isLoading = false;
   errorMessage = '';
 
+
   fields = [
     {
       id: 'total_credit_limit',
       label: 'Загальний кредитний ліміт',
-      description: 'Сукупний кредитний ліміт за всіма вашими рахунками та картками.',
+      description: 'Сукупний ліміт коштів, який ви можете позичити на всіх ваших рахунках та картках.',
       min: 0,
     },
     {
       id: 'used_credit_amount',
       label: 'Використані кредитні кошти',
-      description: 'Загальна сума, яку ви вже використали з доступного кредитного ліміту.',
-      min: 0,
-    },
-    {
-      id: 'total_card_balance',
-      label: 'Баланс на картках',
-      description: 'Сума коштів, яка наразі є на всіх ваших картках.',
+      description: 'Загальна сума, яку ви витратили з доступного кредитного ліміту.',
       min: 0,
     },
     {
       id: 'available_credit_limit',
       label: 'Доступний кредит',
-      description: 'Сума, яка ще доступна для використання в межах кредитного ліміту.',
+      description: 'Сума, яка ще доступна для використання в межах вашого кредитного ліміту.',
       min: 0,
     },
     {
-      id: 'accounts_with_75_percent_limit',
-      label: 'Рахунки з 75% доступного кредиту',
-      description: 'Кількість рахунків, де залишок кредитного ліміту перевищує 75%.',
+      id: 'accounts_with_late_payments',
+      label: 'Рахунки з простроченнями',
+      description: 'Кількість рахунків, на яких коли-небудь було протерміновано виплату.',
       min: 0,
     },
     {
       id: 'total_accounts',
-      label: 'Кількість рахунків/карток',
-      description: 'Сукупна кількість активних рахунків та кредитних карток.',
+      label: 'Загальна кількість рахунків',
+      description: 'Загальна кількість ваших рахунків та кредитних карток.',
       min: 0,
     },
     {
-      id: 'number_of_late_payments',
-      label: 'Прострочення платежів',
-      description: 'Число випадків, коли ви не вклалися у строк погашення кредиту.',
+      id: 'number_of_derogatory_records',
+      label: 'Кількість негативних записів',
+      description: 'Кількість негативних записів у вашій кредитній історії (наприклад, судові позови).',
       min: 0,
     },
     {
-      id: 'total_taken_credits',
-      label: 'Усі отримані кредити',
-      description: 'Загальна кількість кредитів або позик, які ви брали.',
+      id: 'number_of_collections',
+      label: 'Кількість боргів у колекторах',
+      description: 'Кількість боргів, переданих до колекторських агентств.',
+      min: 0,
+    },
+    {
+      id: 'months_since_first_credit',
+      label: 'Місяців від першого кредиту',
+      description: 'Кількість місяців, що минуло з моменту, коли ви відкрили перший кредитний рахунок або взяли перший кредит.',
+      min: 0,
+    },
+    {
+      id: 'accounts_with_75_percent_limit',
+      label: 'Рахунки з більше ніж 75% доступного кредиту',
+      description: 'Кількість рахунків, де залишок доступного кредиту перевищує 75%.',
       min: 0,
     },
     {
       id: 'credits_overdue_120_days',
       label: 'Прострочення понад 120 днів',
-      description: 'Кредити, де термін прострочення перевищує 120 днів.',
+      description: 'Кількість кредитів, у яких прострочення перевищує 120 днів.',
       min: 0,
     },
     {
-      id: 'number_of_bankruptcies',
-      label: 'Банкрутства',
-      description: 'Скільки разів ви оголошували про своє банкрутство.',
-      min: 0,
-    },
-    {
-      id: 'number_of_derogatory_records',
-      label: 'Негативні записи',
-      description: 'Кількість негативних моментів у вашій кредитній історії.',
-      min: 0,
-    },
-    {
-      id: 'non_exhausted_credit_accounts',
-      label: 'Рахунки з невичерпаним кредитом',
-      description: 'Кількість рахунків, де кредитний ліміт ще не вичерпано повністю.',
-      min: 0,
-    },
-    {
-      id: 'credits_overdue_30_days',
-      label: 'Прострочення понад 30 днів',
-      description: 'Кількість кредитів із простроченням понад 30 днів.',
-      min: 0,
-    },
-    {
-      id: 'months_since_first_credit',
-      label: 'Час від першого кредиту',
-      description: 'Кількість місяців, що минули з моменту отримання вашого першого кредиту.',
+      id: 'total_taken_credits',
+      label: 'Загальна кількість взятих кредитів',
+      description: 'Загальна кількість кредитів або позик, які ви отримали.',
       min: 0,
     },
     {
       id: 'credits_taken_last_2_years',
       label: 'Кредити за останні 2 роки',
-      description: 'Кількість кредитів, які ви оформили за останні два роки.',
+      description: 'Кількість кредитів, оформлених вами протягом останніх двох років.',
+      min: 0,
+    },
+    {
+      id: 'total_card_balance',
+      label: 'Загальний баланс на картках',
+      description: 'Загальна сума коштів, що знаходиться на всіх ваших картках.',
+      min: 0,
+    },
+    {
+      id: 'total_income',
+      label: 'Сумарний дохід',
+      description: 'Ваш загальний дохід, який враховується при оцінці кредитоспроможності.',
+      min: 0,
+    },
+    {
+      id: 'monthly_debt_payments',
+      label: 'Щомісячні виплати боргу',
+      description: 'Сума, яку ви сплачуєте щомісяця за своїми боргами.',
+      min: 0,
+    },
+    {
+      id: 'credits_overdue_30_days',
+      label: 'Прострочення понад 30 днів',
+      description: 'Кількість кредитів, у яких прострочення перевищує 30 днів.',
       min: 0,
     }
   ];
@@ -134,6 +141,22 @@ export class FicoCalculatorComponent {
   onSubmit() {
     this.isLoading = true;
     this.errorMessage = '';
+
+    // Оновлюємо формат значення home_ownership перед відправкою
+    const ownershipTypes = ['OWN', 'MORTGAGE', 'NONE', 'RENT', 'OTHER', 'ANY'];
+    ownershipTypes.forEach(type => {
+      this.formData[`home_ownership_${type}`] = 0; // Ініціалізуємо всі значення як 0
+    });
+
+    // Якщо вибрано значення, оновлюємо відповідне поле, інакше встановлюємо ANY = 1
+    if (this.formData['home_ownership']) {
+      this.formData[`home_ownership_${this.formData['home_ownership']}`] = 1;
+    } else {
+      this.formData['home_ownership_ANY'] = 1;
+    }
+
+    delete this.formData['home_ownership']; // Видаляємо оригінальне поле
+
 
     this.http.post<FicoResponse>('/api/calculate-fico/', this.formData).subscribe({
       next: (response) => {

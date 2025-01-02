@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {NgForOf, NgIf} from "@angular/common";
+import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
 
 
 interface FicoResponse {
-  fico: number;
+  prediction: number;
 }
 
 @Component({
@@ -15,7 +15,8 @@ interface FicoResponse {
     ReactiveFormsModule,
     NgForOf,
     NgIf,
-    FormsModule
+    FormsModule,
+    DecimalPipe
   ],
   templateUrl: './fico-calculator.component.html',
   styleUrl: './fico-calculator.component.scss'
@@ -158,9 +159,11 @@ export class FicoCalculatorComponent {
     delete this.formData['home_ownership']; // Видаляємо оригінальне поле
 
 
-    this.http.post<FicoResponse>('/api/calculate-fico/', this.formData).subscribe({
+    this.http.post<FicoResponse>('https://fico-api-8840c024e496.herokuapp.com/predict/', this.formData,
+      {headers: { 'Content-Type': 'application/json' }
+      }).subscribe({
       next: (response) => {
-        this.ficoScore = response.fico;
+        this.ficoScore = response.prediction;
         this.isLoading = false;
       },
       error: (error) => {
@@ -169,6 +172,9 @@ export class FicoCalculatorComponent {
         this.isLoading = false;
       },
     });
+
+
+
   }
 
 

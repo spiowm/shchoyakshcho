@@ -57,6 +57,6 @@
 
 
   <div *ngIf="ficoScore !== null" class="fico-calculator__score">
-    Ваш FICO Score: {{ ficoScore }}
+    Ваш FICO Score: {{ ficoScore | number:'1.0-0' }}
   </div>
 </div>

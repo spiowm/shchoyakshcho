@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { DecimalPipe, NgForOf, NgIf } from "@angular/common";
+import {Component} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
 
 interface FicoResponse {
   prediction: number;
@@ -36,6 +36,7 @@ export class FicoCalculatorComponent {
   recommendations: Recommendation[] = [];
   isLoading = false;
   errorMessage = '';
+  showResult = false;
 
   fields = [
     {
@@ -153,48 +154,61 @@ export class FicoCalculatorComponent {
   ];
 
   ownershipOptions = [
-    { id: 'OWN', label: 'Власне житло' },
-    { id: 'MORTGAGE', label: 'Іпотека' },
-    { id: 'NONE', label: 'Житло відсутнє' },
-    { id: 'RENT', label: 'Оренда' },
-    { id: 'OTHER', label: 'Інше' }
+    {id: 'OWN', label: 'Власне житло'},
+    {id: 'MORTGAGE', label: 'Іпотека'},
+    {id: 'NONE', label: 'Житло відсутнє'},
+    {id: 'RENT', label: 'Оренда'},
+    {id: 'OTHER', label: 'Інше'}
   ];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   onSubmit() {
+    if (this.showResult) {
+      this.resetForm();
+      return;
+    }
+
     this.isLoading = true;
     this.errorMessage = '';
-    this.recommendations = [];
 
-    // Оновлюємо формат значення home_ownership перед відправкою
     const ownershipTypes = ['OWN', 'MORTGAGE', 'NONE', 'RENT', 'OTHER', 'ANY'];
     ownershipTypes.forEach(type => {
-      this.formData[`home_ownership_${type}`] = 0; // Ініціалізуємо всі значення як 0
+      this.formData[`home_ownership_${type}`] = 0;
     });
 
-    // Якщо вибрано значення, оновлюємо відповідне поле, інакше встановлюємо ANY = 1
     if (this.formData['home_ownership']) {
       this.formData[`home_ownership_${this.formData['home_ownership']}`] = 1;
     } else {
       this.formData['home_ownership_ANY'] = 1;
     }
 
-    delete this.formData['home_ownership']; // Видаляємо оригінальне поле
+    delete this.formData['home_ownership'];
 
-    this.http.post<FicoResponse>('https://fico-api-8840c024e496.herokuapp.com/predict/', this.formData, {
-      headers: { 'Content-Type': 'application/json' }
-    }).subscribe({
+    this.http.post<FicoResponse>('https://fico-api-8840c024e496.herokuapp.com/predict/', this.formData,
+      { headers: { 'Content-Type': 'application/json' } }
+    ).subscribe({
       next: (response) => {
         this.ficoScore = response.prediction;
-        this.recommendations = response.recommendations;
+        this.recommendations = response.recommendations; // Зберігаємо рекомендації
         this.isLoading = false;
+        this.showResult = true; // Показуємо результати
       },
       error: (error) => {
         console.error('Error calculating FICO', error);
         this.errorMessage = 'Помилка при розрахунку. Спробуйте ще раз.';
         this.isLoading = false;
-      }
+      },
     });
   }
+
+  resetForm() {
+    // this.formData = {};
+    this.ficoScore = null;
+    // this.recommendations = [];
+    this.showResult = false;
+  }
+
+
 }

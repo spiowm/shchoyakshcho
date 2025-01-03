@@ -2,6 +2,7 @@
   <h1 class="fico-calculator__title">Калькулятор FICO</h1>
 
   <form
+    *ngIf="!showResult"
     class="fico-calculator__form"
     (ngSubmit)="onSubmit()"
     #ficoForm="ngForm"
@@ -46,16 +47,18 @@
       {{ errorMessage }}
     </div>
 
-    <button
-      type="submit"
-      class="fico-calculator__button"
-      [disabled]="!ficoForm.form.valid || isLoading"
-    >
-      Генерувати
-    </button>
+    <div class="fico-calculator__button-container">
+      <button
+        type="submit"
+        class="fico-calculator__button"
+        [disabled]="!ficoForm.form.valid"
+      >
+        Генерувати
+      </button>
+    </div>
   </form>
 
-  <div *ngIf="ficoScore !== null" class="fico-calculator__result">
+  <div *ngIf="showResult" class="fico-calculator__results">
     <div class="fico-calculator__score">
       Ваш FICO рейтинг: <span class="fico-calculator__fico-score">{{ ficoScore | number:'1.0-0' }}</span>
     </div>
@@ -67,6 +70,15 @@
           {{ recommendation.message }}
         </li>
       </ul>
+    </div>
+    <div class="fico-calculator__button-container">
+      <button
+        type="button"
+        class="fico-calculator__button"
+        (click)="onSubmit()"
+      >
+        OK
+      </button>
     </div>
   </div>
 </div>

@@ -124,6 +124,39 @@
     font-size: 20px;
     font-weight: bold;
   }
+
+  &__recommendations {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #007bff;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background-color: #f1f1f1;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {

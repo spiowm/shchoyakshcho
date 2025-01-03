@@ -45,18 +45,27 @@
       {{ errorMessage }}
     </div>
 
-
     <button
       type="submit"
       class="fico-calculator__button"
-      [disabled]="!ficoForm.form.valid"
+      [disabled]="!ficoForm.form.valid || isLoading"
     >
       Генерувати
     </button>
   </form>
 
+  <div *ngIf="ficoScore !== null" class="fico-calculator__result">
+    <div class="fico-calculator__score">
+      Ваш FICO Score: {{ ficoScore | number:'1.0-0' }}
+    </div>
 
-  <div *ngIf="ficoScore !== null" class="fico-calculator__score">
-    Ваш FICO Score: {{ ficoScore | number:'1.0-0' }}
+    <div class="fico-calculator__recommendations" *ngIf="recommendations.length">
+      <h2>Рекомендації:</h2>
+      <ul>
+        <li *ngFor="let recommendation of recommendations">
+          {{ recommendation.message }}
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

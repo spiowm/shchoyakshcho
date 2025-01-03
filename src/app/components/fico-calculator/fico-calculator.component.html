@@ -20,6 +20,7 @@
         [(ngModel)]="formData[field.id]"
         [name]="field.id"
         [min]="field.min"
+        [placeholder]="field.placeholder"
         required
       />
     </div>
@@ -56,7 +57,7 @@
 
   <div *ngIf="ficoScore !== null" class="fico-calculator__result">
     <div class="fico-calculator__score">
-      Ваш FICO Score: {{ ficoScore | number:'1.0-0' }}
+      Ваш FICO рейтинг: <span class="fico-calculator__fico-score">{{ ficoScore | number:'1.0-0' }}</span>
     </div>
 
     <div class="fico-calculator__recommendations" *ngIf="recommendations.length">

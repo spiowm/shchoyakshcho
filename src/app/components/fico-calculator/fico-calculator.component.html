@@ -38,6 +38,7 @@
           [(ngModel)]="formData['home_ownership']"
           [value]="option.id"
           name="home_ownership"
+          required
         />
         <label [for]="option.id">{{ option.label }}</label>
       </div>
@@ -60,7 +61,11 @@
 
   <div *ngIf="showResult" class="fico-calculator__results">
     <div class="fico-calculator__score">
-      Ваш FICO рейтинг: <span class="fico-calculator__fico-score">{{ ficoScore | number:'1.0-0' }}</span>
+      Ваш FICO рейтинг:
+      <span
+        class="fico-calculator__fico-score">
+      {{ ficoScore ? (ficoScore - 5) + ' - ' + (ficoScore + 5) : 'N/A' }}
+    </span>
     </div>
 
     <div class="fico-calculator__recommendations" *ngIf="recommendations.length">

@@ -37,6 +37,7 @@ export class FicoCalculatorComponent {
   isLoading = false;
   errorMessage = '';
   showResult = false;
+  homeOwnership: string | null = null;
 
   fields = [
     {
@@ -158,6 +159,7 @@ export class FicoCalculatorComponent {
     {id: 'MORTGAGE', label: 'Іпотека'},
     {id: 'NONE', label: 'Житло відсутнє'},
     {id: 'RENT', label: 'Оренда'},
+    {id: 'ANY', label: 'Будь-яке з перелічених'},
     {id: 'OTHER', label: 'Інше'}
   ];
 
@@ -166,7 +168,7 @@ export class FicoCalculatorComponent {
 
   onSubmit() {
     if (this.showResult) {
-      this.resetForm();
+      this.showResult = false;
       return;
     }
 
@@ -179,21 +181,23 @@ export class FicoCalculatorComponent {
     });
 
     if (this.formData['home_ownership']) {
+      this.homeOwnership = this.formData['home_ownership'];
       this.formData[`home_ownership_${this.formData['home_ownership']}`] = 1;
-    } else {
-      this.formData['home_ownership_ANY'] = 1;
     }
 
     delete this.formData['home_ownership'];
 
     this.http.post<FicoResponse>('https://fico-api-8840c024e496.herokuapp.com/predict/', this.formData,
-      { headers: { 'Content-Type': 'application/json' } }
+      {headers: {'Content-Type': 'application/json'}}
     ).subscribe({
       next: (response) => {
         this.ficoScore = response.prediction;
-        this.recommendations = response.recommendations; // Зберігаємо рекомендації
+        this.recommendations = response.recommendations;
         this.isLoading = false;
-        this.showResult = true; // Показуємо результати
+        this.showResult = true;
+        if (this.homeOwnership) {
+          this.formData['home_ownership'] = this.homeOwnership;
+        }
       },
       error: (error) => {
         console.error('Error calculating FICO', error);
@@ -201,13 +205,6 @@ export class FicoCalculatorComponent {
         this.isLoading = false;
       },
     });
-  }
-
-  resetForm() {
-    // this.formData = {};
-    this.ficoScore = null;
-    // this.recommendations = [];
-    this.showResult = false;
   }
 
 

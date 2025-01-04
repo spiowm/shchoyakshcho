@@ -67,7 +67,12 @@
       <h2>Рекомендації:</h2>
       <ul>
         <li *ngFor="let recommendation of recommendations">
-          {{ recommendation.message }}
+          <div class="fico-calculator__feat-name">
+            {{ recommendation.feat_name }}
+          </div>
+          <div class="fico-calculator__message">
+            {{ recommendation.message }}
+          </div>
         </li>
       </ul>
     </div>

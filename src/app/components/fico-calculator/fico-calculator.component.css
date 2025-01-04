@@ -140,6 +140,14 @@
 .fico-calculator__recommendations ul li:hover {
   background-color: #f1f1f1;
 }
+.fico-calculator__feat-name {
+  font-weight: bold;
+  font-size: 14px;
+}
+.fico-calculator__message {
+  font-size: 14px;
+  padding: 7px 0 0 0;
+}
 
 @media (max-width: 768px) {
   .fico-calculator__form {

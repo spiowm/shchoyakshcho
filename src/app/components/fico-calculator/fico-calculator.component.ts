@@ -45,21 +45,21 @@ export class FicoCalculatorComponent {
       label: 'Загальний кредитний ліміт',
       description: 'Сукупний ліміт коштів, який ви можете позичити на всіх ваших рахунках та картках.',
       min: 0,
-      placeholder: 'USD'
+      placeholder: '₴'
     },
     {
       id: 'used_credit_amount',
       label: 'Використані кредитні кошти',
       description: 'Загальна сума, яку ви витратили з доступного кредитного ліміту.',
       min: 0,
-      placeholder: 'USD'
+      placeholder: '₴'
     },
     {
       id: 'available_credit_limit',
       label: 'Доступний кредит',
       description: 'Сума, яка ще доступна для використання в межах вашого кредитного ліміту.',
       min: 0,
-      placeholder: 'USD'
+      placeholder: '₴'
     },
     {
       id: 'accounts_with_late_payments',
@@ -129,21 +129,21 @@ export class FicoCalculatorComponent {
       label: 'Загальний баланс на картках',
       description: 'Загальна сума коштів, що знаходиться на всіх ваших картках.',
       min: 0,
-      placeholder: 'USD'
+      placeholder: '₴'
     },
     {
       id: 'total_income',
       label: 'Сумарний дохід',
       description: 'Ваш загальний дохід, який враховується при оцінці кредитоспроможності.',
       min: 0,
-      placeholder: 'USD'
+      placeholder: '₴'
     },
     {
       id: 'monthly_debt_payments',
       label: 'Щомісячні виплати боргу',
       description: 'Сума, яку ви сплачуєте щомісяця за своїми боргами.',
       min: 0,
-      placeholder: 'USD'
+      placeholder: '₴'
     },
     {
       id: 'credits_overdue_30_days',

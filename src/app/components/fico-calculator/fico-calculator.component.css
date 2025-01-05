@@ -148,6 +148,59 @@
   font-size: 14px;
   padding: 7px 0 0 0;
 }
+.fico-calculator__fico-score-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.fico-calculator__fico-explanation {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fico-calculator__fico-explanation__range {
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #fff;
+  max-width: 200px;
+}
+.fico-calculator__fico-explanation__range.fico-green {
+  background-color: #28a745;
+}
+.fico-calculator__fico-explanation__range.fico-light-green {
+  background-color: #8bc34a;
+}
+.fico-calculator__fico-explanation__range.fico-yellow {
+  background-color: #ffc107;
+}
+.fico-calculator__fico-explanation__range.fico-orange {
+  background-color: #ff5722;
+}
+.fico-calculator__fico-explanation__range.fico-red {
+  background-color: #dc3545;
+}
+.fico-calculator__fico-score {
+  font-size: 24px;
+  font-weight: bold;
+}
+.fico-calculator__fico-score.fico-green {
+  color: #28a745;
+}
+.fico-calculator__fico-score.fico-light-green {
+  color: #8bc34a;
+}
+.fico-calculator__fico-score.fico-yellow {
+  color: #ffc107;
+}
+.fico-calculator__fico-score.fico-orange {
+  color: #ff5722;
+}
+.fico-calculator__fico-score.fico-red {
+  color: #dc3545;
+}
 
 @media (max-width: 768px) {
   .fico-calculator__form {
@@ -171,6 +224,10 @@
   }
   .fico-calculator__checkboxes {
     grid-column: span 1;
+  }
+  .fico-calculator__fico-score-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 

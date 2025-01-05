@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
+import {DecimalPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 
 interface FicoResponse {
   prediction: number;
@@ -25,7 +25,8 @@ interface Recommendation {
     NgForOf,
     NgIf,
     FormsModule,
-    DecimalPipe
+    DecimalPipe,
+    NgClass
   ],
   templateUrl: './fico-calculator.component.html',
   styleUrls: ['./fico-calculator.component.scss']
@@ -205,6 +206,16 @@ export class FicoCalculatorComponent {
         this.isLoading = false;
       },
     });
+  }
+
+
+    getFicoClass(score: number | null): string {
+    if (score === null) return '';
+    if (score >= 800) return 'fico-green';
+    if (score >= 740) return 'fico-light-green';
+    if (score >= 670) return 'fico-yellow';
+    if (score >= 580) return 'fico-orange';
+    return 'fico-red';
   }
 
 

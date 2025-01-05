@@ -60,12 +60,27 @@
   </form>
 
   <div *ngIf="showResult" class="fico-calculator__results">
-    <div class="fico-calculator__score">
-      Ваш FICO рейтинг:
-      <span
-        class="fico-calculator__fico-score">
+
+    <div class="fico-calculator__fico-score-wrapper">
+
+      <div class="fico-calculator__score">
+        Ваш FICO рейтинг:
+        <span
+          class="fico-calculator__fico-score"
+          [ngClass]="getFicoClass(ficoScore)">
       {{ ficoScore ? (ficoScore - 5) + ' - ' + (ficoScore + 5) : 'N/A' }}
     </span>
+      </div>
+
+      <!-- FICO Score Range Explanation -->
+      <div class="fico-calculator__fico-explanation">
+        <div class="fico-calculator__fico-explanation__range fico-green">800 - 850 – Відмінний</div>
+        <div class="fico-calculator__fico-explanation__range fico-light-green">740 - 799 – Дуже добрий</div>
+        <div class="fico-calculator__fico-explanation__range fico-yellow">670 - 739 – Добрий</div>
+        <div class="fico-calculator__fico-explanation__range fico-orange">580 - 669 – Задовільний</div>
+        <div class="fico-calculator__fico-explanation__range fico-red">300 - 579 – Поганий</div>
+      </div>
+
     </div>
 
     <div class="fico-calculator__recommendations" *ngIf="recommendations.length">

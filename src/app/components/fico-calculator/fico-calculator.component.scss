@@ -178,6 +178,73 @@
     padding: 7px 0 0 0;
   }
 
+  &__fico-score-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__fico-explanation {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__range {
+      padding: 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      color: #fff;
+      max-width: 200px;
+
+      &.fico-green {
+        background-color: #28a745;
+      }
+
+      &.fico-light-green {
+        background-color: #8bc34a;
+      }
+
+      &.fico-yellow {
+        background-color: #ffc107;
+      }
+
+      &.fico-orange {
+        background-color: #ff5722;
+      }
+
+      &.fico-red {
+        background-color: #dc3545;
+      }
+    }
+  }
+
+  &__fico-score {
+    font-size: 24px;
+    font-weight: bold;
+
+    &.fico-green {
+      color: #28a745;
+    }
+
+    &.fico-light-green {
+      color: #8bc34a;
+    }
+
+    &.fico-yellow {
+      color: #ffc107;
+    }
+
+    &.fico-orange {
+      color: #ff5722;
+    }
+
+    &.fico-red {
+      color: #dc3545;
+    }
+  }
+
 
 }
 
@@ -209,4 +276,11 @@
   .fico-calculator__checkboxes {
     grid-column: span 1;
   }
+
+  .fico-calculator__fico-score-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
 }

@@ -84,7 +84,7 @@ export class FicoCalculatorComponent {
     },
     {
       id: 'number_of_collections',
-      label: 'Кількість боргів у колекторах',
+      label: 'Кількість боргів у колекторів',
       description: 'Кількість боргів, переданих до колекторських агентств.',
       min: 0,
       placeholder: ''
@@ -133,8 +133,8 @@ export class FicoCalculatorComponent {
     },
     {
       id: 'total_income',
-      label: 'Сумарний дохід',
-      description: 'Ваш загальний дохід, який враховується при оцінці кредитоспроможності.',
+      label: 'Сукупний місячний дохід',
+      description: 'Загальна сума ваших доходів, отриманих протягом місяця.',
       min: 0,
       placeholder: '₴'
     },
